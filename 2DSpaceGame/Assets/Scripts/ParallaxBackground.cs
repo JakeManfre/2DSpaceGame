@@ -20,7 +20,8 @@ public class ParallaxBackground : MonoBehaviour
     string _texture;
 
     float _screenWidth;
-    const float _backgroundBuffer = 2f;
+    [SerializeField]
+    float _backgroundBuffer = 2f;
 
     // Start is called before the first frame update
     void Start()

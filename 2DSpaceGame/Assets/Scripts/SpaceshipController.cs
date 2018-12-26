@@ -12,6 +12,9 @@ public class SpaceshipController : MonoBehaviour
     private Vector3 _camPos;
 
     [SerializeField]
+    private CameraZoomController _camZoomController;
+
+    [SerializeField]
     private float _acceleration = 2;
     [SerializeField]
     private bool _showShipsVector;
@@ -95,6 +98,10 @@ public class SpaceshipController : MonoBehaviour
         {
             return;
         }
+
+        Debug.Log("speed: " + _currentSpeed);
+        // scale camera orthographic
+        _camZoomController.SetOrthographicSize(_currentSpeed, _maxSpeed);
 
         _camPos = _mainCamera.transform.position;
 
