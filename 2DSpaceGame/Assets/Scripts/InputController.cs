@@ -5,65 +5,55 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    public static event EventHandler<InputInfo> LeftInput;
-    public static event EventHandler<InputInfo> RightInput;
-    public static event EventHandler<InputInfo> UpInput;
-    public static event EventHandler<InputInfo> DownInput;
+    public static event EventHandler LeftInput;
+    public static event EventHandler RightInput;
+    public static event EventHandler UpInput;
+    public static event EventHandler DownInput;
     public static event EventHandler ClearHorizontalInput;
     public static event EventHandler ClearVerticalInput;
 
-    private float horizontal;
-    private float vertical;
-
-    private float speed;
-
-    /*---------------------------------------------------------------------------------*/
-    // Start is called before the first frame update
-    void Start()
-    {
-        speed = 2; 
-    }
-    /*---------------------------------------------------------------------------------*/
+    /*=========================================================================================*/
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-
+        /*========================================================================*/
+        /*                             Horizontal Input                           */
+        /*========================================================================*/
         // move right
-        if (horizontal > 0)
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            RightInput?.Invoke(this, new InputInfo(horizontal));
+            RightInput?.Invoke(this, new EventArgs());
         }
         // move left
-        if (horizontal < 0)
-        { 
-            LeftInput?.Invoke(this, new InputInfo(horizontal));
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            LeftInput?.Invoke(this, new EventArgs());
         }
+        /*-------------------------------------------------------------------------*/
         // left key up
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            //Debug.Log("left key up");
             ClearHorizontalInput?.Invoke(this, new EventArgs());
         }
         // right key up
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            //Debug.Log("right key up");
             ClearHorizontalInput?.Invoke(this, new EventArgs());
         }
-
-
+        /*========================================================================*/
+        /*                              Vertical Input                            */
+        /*========================================================================*/
         // move up
-        if (vertical > 0)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            UpInput?.Invoke(this, new InputInfo(vertical));
+            UpInput?.Invoke(this, new EventArgs());
         }
         // move down
-        if (vertical < 0)
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            DownInput?.Invoke(this, new InputInfo(vertical));
+            DownInput?.Invoke(this, new EventArgs());
         }
+        /*-------------------------------------------------------------------------*/
         // up key up
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
         {
@@ -71,22 +61,22 @@ public class InputController : MonoBehaviour
             ClearVerticalInput?.Invoke(this, new EventArgs());
         }
         // down key up
-        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+        else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             //Debug.Log("down key up");
             ClearVerticalInput?.Invoke(this, new EventArgs());
         }
     }
 }
-/*---------------------------------------------------------------------------------*/
-/*---------------- class of input info to pass in event calls ---------------------*/
-/*---------------------------------------------------------------------------------*/
-public class InputInfo : EventArgs
-{
-    public float value;
+/*=================================================================================*/
+/*                   class of input info to pass in event calls                    */
+/*=================================================================================*/
+//public class InputInfo : EventArgs
+//{
+//    public float value;
 
-    public InputInfo(float val)
-    {
-        value = val;
-    }
-}
+//    public InputInfo(float val)
+//    {
+//        value = val;
+//    }
+//}

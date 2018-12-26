@@ -8,6 +8,7 @@ public class ParallaxBackground : MonoBehaviour
     private Transform _playerShip;
     [SerializeField]
     [Header("Parallax rate must be greater than 0.")]
+    [Tooltip("The rate at which the texture offset changes. The higher the value the slower it changes.")]
     private int _parallaxRate;
 
     private Vector2 _initialOffset;
@@ -19,7 +20,7 @@ public class ParallaxBackground : MonoBehaviour
     string _texture;
 
     float _screenWidth;
-    const float _backgroundBuffer = 1.2f;
+    const float _backgroundBuffer = 2f;
 
     // Start is called before the first frame update
     void Start()
