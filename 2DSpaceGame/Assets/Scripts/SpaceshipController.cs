@@ -99,7 +99,6 @@ public class SpaceshipController : MonoBehaviour
             return;
         }
 
-        Debug.Log("speed: " + _currentSpeed);
         // scale camera orthographic
         _camZoomController.SetOrthographicSize(_currentSpeed, _maxSpeed);
 
