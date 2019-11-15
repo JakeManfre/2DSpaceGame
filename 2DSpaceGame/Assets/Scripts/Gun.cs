@@ -53,31 +53,28 @@ public abstract class Gun : MonoBehaviour
     [SerializeField]
     List<FIRE_MODE> availableModes;
 
-    // Curent mode of the gun, look above
-    int currentMode;
+    Cycleable<FIRE_MODE> modes;
 
     // Tracking states
-    private bool isFiring       = false;
-    private bool triggerPulled  = false;
-    float lastTriggerPull = 0;
+    bool isFiring;
+    bool triggerPulled;
+    float lastTriggerPull;
 
-    protected void Update()
-    {
-        if (Input.GetButtonDown("Fire"))
-        {
-            pullTrigger();
-        }
-        else if (Input.GetButtonUp("Fire"))
-        {
-            releaseTrigger();
-        }
-        else if (Input.GetButtonDown("FireMode"))
-        {
-            changeMode();
-        }
-    }
+    protected GameObject myOwner;
 
     protected abstract void Projectile_OnTriggerEnter2D(Projectile projectile, Collider2D collider);
+
+    public void Initialize(GameObject owner)
+    {
+        modes = new Cycleable<FIRE_MODE>();
+        modes.SetList(availableModes);
+
+        isFiring = false;
+        triggerPulled = false;
+        lastTriggerPull = 0;
+
+        myOwner = owner; 
+    }
 
     public void pullTrigger()
     {
@@ -89,7 +86,7 @@ public abstract class Gun : MonoBehaviour
         lastTriggerPull = Time.time;
         triggerPulled   = true;
 
-        switch(availableModes[currentMode])
+        switch(getMode())
         {
             case FIRE_MODE.SINGLE:
                 Fire_Single();
@@ -185,23 +182,13 @@ public abstract class Gun : MonoBehaviour
         magazine.addAmmo(amount);
     }
 
-    public bool changeMode()
+    public void changeMode()
     {
-        if (isFiring) { return false; }
-
-        ++currentMode;
-
-        //wrap the mode to the front of the list
-        if (currentMode >= availableModes.Count) 
-        { 
-            currentMode = 0; 
-        }
-
-        return true;
+        modes.ChooseNext();
     }
 
     public FIRE_MODE getMode()
     {
-        return availableModes[currentMode];
+        return modes.GetSelected();
     }
 }

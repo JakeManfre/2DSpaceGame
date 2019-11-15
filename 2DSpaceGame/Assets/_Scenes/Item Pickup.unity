@@ -2342,7 +2342,7 @@ GameObject:
   - component: {fileID: 1106182779}
   - component: {fileID: 1106182780}
   - component: {fileID: 1106182782}
-  - component: {fileID: 1106182781}
+  - component: {fileID: 1106182783}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -2550,33 +2550,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1106182781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106182775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c37a836b322fa42448f8daffc760c241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: RetrievalGun
-  magazine: {fileID: 5580919880211021320, guid: 8316dc5d65e508b4d968c71d8d9f8c5e,
-    type: 3}
-  onFire: {fileID: 8300000, guid: 569023069615e584d83e0ae5282724e7, type: 3}
-  onFireVolume: 75
-  onEmptyFire: {fileID: 8300000, guid: fe627bf113df41a4c976d685643bfd7a, type: 3}
-  onEmptyFireVolume: 75
-  onReload: {fileID: 0}
-  onReloadVolume: 0
-  burstFireRate: 0
-  autoFireRate: 0
-  shotsPerBurst: 0
-  shotCooldown: 1
-  launchSpeed: 15
-  availableModes: 00000000
 --- !u!114 &1106182782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2596,6 +2569,22 @@ MonoBehaviour:
   onInsertVolume: 0
   onRemoveSound: {fileID: 0}
   onRemoveVolume: 0
+--- !u!114 &1106182783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106182775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48343b349a1b72342bf610a49f30a1cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: WeaponSystem
+  gunList:
+  - {fileID: 4631501169322998396, guid: 1fa38a5594f48b244bb23ad0c9d6f87d, type: 3}
+  - {fileID: 7812650812308470743, guid: e40c51a2febb82d4aab928bf11477586, type: 3}
 --- !u!1 &1129727644
 GameObject:
   m_ObjectHideFlags: 0
