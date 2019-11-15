@@ -28,6 +28,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     float onRemoveVolume;
 
+    float currSizeTaken = 0f;
+    float currWeightTaken = 0f;
+
 
     List<Pickup> itemsInInventory;
 
@@ -40,7 +43,8 @@ public class Inventory : MonoBehaviour
     private bool canAdd(Pickup item)
     {
         if (!item) { return false; }
-        return ((sizeCapacity - item.getSize()) > 0) && ((weightCapacity - item.getWeight()) > 0);
+        return ((currSizeTaken      + item.getSize())   <= sizeCapacity) && 
+               ((currWeightTaken    + item.getWeight()) <= weightCapacity);
     }
 
 
@@ -50,12 +54,22 @@ public class Inventory : MonoBehaviour
 
         // Add to our list
         itemsInInventory.Add(item);
+
+        // Reduce our size
+        currSizeTaken   += item.getSize();
+        currWeightTaken += item.getWeight();
+
         return true;
     }
 
     public bool remove(Pickup item)
     {
-        if (!item) { return false; }
-        return itemsInInventory.Remove(item);
+        if (!item || !itemsInInventory.Remove(item)) { return false; }
+
+        // Add back in new sizes
+        currSizeTaken   -= item.getSize();
+        currWeightTaken -= item.getWeight();
+
+        return true;
     }
 }

@@ -660,7 +660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534462008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422382175}
@@ -745,7 +745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 324561202}
@@ -2345,7 +2345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106182775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1209334767}
@@ -2723,6 +2723,7 @@ GameObject:
   - component: {fileID: 1209334768}
   - component: {fileID: 1209334769}
   - component: {fileID: 1209334770}
+  - component: {fileID: 1209334771}
   m_Layer: 0
   m_Name: spaceship sprite
   m_TagString: Untagged
@@ -2875,6 +2876,33 @@ MonoBehaviour:
   onInsertVolume: 0
   onRemoveSound: {fileID: 0}
   onRemoveVolume: 0
+--- !u!114 &1209334771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209334766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff5aa3717c455c48bffa004829c5dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: ItemPickupGun
+  magazine: {fileID: 5580919880211021320, guid: 8316dc5d65e508b4d968c71d8d9f8c5e,
+    type: 3}
+  onFire: {fileID: 8300000, guid: 569023069615e584d83e0ae5282724e7, type: 3}
+  onFireVolume: 50
+  onEmptyFire: {fileID: 8300000, guid: fe627bf113df41a4c976d685643bfd7a, type: 3}
+  onEmptyFireVolume: 75
+  onReload: {fileID: 0}
+  onReloadVolume: 0
+  burstFireRate: 0.1
+  autoFireRate: 0.3
+  shotsPerBurst: 4
+  shotCooldown: 0.5
+  launchSpeed: 10
+  availableModes: 000000000100000002000000
 --- !u!1 &1264666922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3714,7 @@ PrefabInstance:
     - target: {fileID: 6129310908017409048, guid: 43a4f9a76eb192048972a5f99df4b158,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6129310908017409048, guid: 43a4f9a76eb192048972a5f99df4b158,
         type: 3}
