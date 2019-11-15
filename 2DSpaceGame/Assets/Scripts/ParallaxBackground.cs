@@ -43,7 +43,8 @@ public class ParallaxBackground : MonoBehaviour
     void Update()
     {
         // set texture position to ships positoin
-        transform.position = _playerShip.position;
+        //transform.position = _playerShip.position;
+        transform.position = new Vector3(_playerShip.position.x, _playerShip.position.y);
 
         // calculate and set texture offset based on the ships position
         _horizontalParallax = _playerShip.position.x / _parallaxRate;
