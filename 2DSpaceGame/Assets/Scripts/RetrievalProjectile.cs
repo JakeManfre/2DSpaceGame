@@ -2,31 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RetrievalGun : Gun
+public class RetrievalProjectile : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        base.overrideProjectileTriggerCallback(this.Projectile_OnTrigger2DEnter);
+        Destroy(gameObject, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        base.Update();
+        
     }
 
-    private void Projectile_OnTrigger2DEnter(Projectile shot, Collider2D collided)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (shot == null || collided == null) { return; }
-
-        GameObject collidedGameObject = collided.gameObject;
+        GameObject collidedGameObject = collision.gameObject;
         if (collidedGameObject == null) { return; }
 
         Pickup pickupComponent = collidedGameObject.GetComponent<Pickup>();
         if (pickupComponent == null) { return; }
 
-        Inventory inventory = gameObject.GetComponent<Inventory>();
+        Inventory inventory = gameObject.GetComponentInParent<Inventory>();
         if (inventory == null) { return; }
 
         InventoryManager.addToInventory(inventory, pickupComponent);

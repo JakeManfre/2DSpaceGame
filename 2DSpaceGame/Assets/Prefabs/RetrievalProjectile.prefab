@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4815932549371541102}
   - component: {fileID: 8459828688376894960}
   - component: {fileID: -7189229599403567998}
-  - component: {fileID: 8658249313074696607}
+  - component: {fileID: 2126951130131920432}
   m_Layer: 12
-  m_Name: laser
+  m_Name: RetrievalProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ PolygonCollider2D:
       - {x: 0.06704056, y: -0.25562838}
       - {x: 0.07101427, y: 0.2423364}
       - {x: 0.03320217, y: 0.2840479}
---- !u!114 &8658249313074696607
+--- !u!114 &2126951130131920432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

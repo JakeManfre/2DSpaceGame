@@ -61,9 +61,6 @@ public class Gun : MonoBehaviour
     private bool triggerPulled  = false;
     float lastTriggerPull = 0;
 
-    // For implementors, set this to handle projectile collisions
-    Projectile._onTriggerEnter2D overrideCallback = null;
-
     protected void Update()
     {
         if (Input.GetButtonDown("Fire"))
@@ -114,11 +111,6 @@ public class Gun : MonoBehaviour
         Fire_Projectile();
     }
 
-    protected void overrideProjectileTriggerCallback(Projectile._onTriggerEnter2D callback)
-    {
-        overrideCallback = callback;
-    }
-
     private IEnumerator Fire_Burst()
     {
         // Only used in burst mode
@@ -163,21 +155,13 @@ public class Gun : MonoBehaviour
         }
 
         GameObject projectile = Instantiate(magazine.getAmmoType(), transform.position, Quaternion.identity) as GameObject;
+        projectile.transform.SetParent(gameObject.transform);
 
         Rigidbody2D rigidBody2DComponent = projectile.GetComponent<Rigidbody2D>();
         if (!rigidBody2DComponent)
         {
             Destroy(projectile);
             return false;
-        }
-
-        if (overrideCallback != null)
-        {
-            Projectile projectileComponent = projectile.GetComponent<Projectile>();
-            if (projectileComponent)
-            {
-                projectileComponent.setOnCollision2DEnter(overrideCallback);
-            }
         }
 
         rigidBody2DComponent.velocity = new Vector2(0, launchSpeed);
