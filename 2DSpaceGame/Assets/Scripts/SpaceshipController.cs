@@ -57,6 +57,12 @@ public class SpaceshipController : MonoBehaviour
 
         gameObject.transform.GetChild(0).eulerAngles = new Vector3(90, 0, 0);
         transform.LookAt(_shipsForwardPoint);
+
+        // TODO put this somewhere else
+        // Link the gun and the inventory
+        Inventory inventory = GetComponent<Inventory>();
+        RetrievalGun rgun = GetComponent<RetrievalGun>();
+        if (inventory && rgun) { rgun.SetInventory(inventory); }
     }
     /*=========================================================================================*/
     /// <summary>

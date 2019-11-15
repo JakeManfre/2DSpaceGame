@@ -33,19 +33,15 @@ public class Magazine : MonoBehaviour
         return amount - actualAdd;
     }
 
-    public void decrementAmmo()
-    {
-        if (numInClip == 0) { return; }
-        numInClip -= 1;
-    }
-
     public void empty()
     {
         numInClip = 0;
     }
 
-    public GameObject getAmmoType()
+    public GameObject getAmmo()
     {
+        if (!hasAmmo()) { return null; }
+        numInClip -= 1;
         return ammoType;
     }
 }

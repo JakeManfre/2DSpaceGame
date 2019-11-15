@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public abstract class Gun : MonoBehaviour
 {
     public enum FIRE_MODE { SINGLE, BURST, AUTO }
 
@@ -76,6 +76,8 @@ public class Gun : MonoBehaviour
             changeMode();
         }
     }
+
+    protected abstract void Projectile_OnTriggerEnter2D(Projectile projectile, Collider2D collider);
 
     public void pullTrigger()
     {
@@ -154,19 +156,22 @@ public class Gun : MonoBehaviour
             return false;
         }
 
-        GameObject projectile = Instantiate(magazine.getAmmoType(), transform.position, Quaternion.identity) as GameObject;
-        projectile.transform.SetParent(gameObject.transform);
+        GameObject newGameObject = Instantiate(magazine.getAmmo(), transform.position, Quaternion.identity) as GameObject;
 
-        Rigidbody2D rigidBody2DComponent = projectile.GetComponent<Rigidbody2D>();
-        if (!rigidBody2DComponent)
+        Projectile projectile   = newGameObject.GetComponent<Projectile>();
+        Rigidbody2D rigidBody2D = newGameObject.GetComponent<Rigidbody2D>();
+
+        if (!rigidBody2D || !projectile)
         {
             Destroy(projectile);
             return false;
         }
 
-        rigidBody2DComponent.velocity = new Vector2(0, launchSpeed);
+        // Register the event
+        projectile.OnTriggerEnter2D_Event += this.Projectile_OnTriggerEnter2D;
 
-        magazine.decrementAmmo();
+        // Set the velocity
+        rigidBody2D.velocity = new Vector2(0, launchSpeed);
 
         AudioSource.PlayClipAtPoint(onFire, Camera.main.transform.position, onFireVolume);
 
