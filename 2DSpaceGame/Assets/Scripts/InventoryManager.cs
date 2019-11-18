@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager
 {
     public static bool addToInventory(Inventory inventory, Pickup item)
     {

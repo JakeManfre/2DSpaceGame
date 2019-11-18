@@ -8,12 +8,8 @@ public class Damager : MonoBehaviour
     [SerializeField]
     float damageDone;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public float getDamageDone()
     {
-        Damageable damageable = collision.GetComponent<Damageable>();
-        if (!damageable) { return; }
-
-        damageable.takeDamage(damageDone);
-        Destroy(gameObject);
+        return damageDone;
     }
 }
