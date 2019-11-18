@@ -40,7 +40,7 @@ public class Inventory : MonoBehaviour
         itemsInInventory = new List<Pickup>(); 
     }
 
-    private bool canAdd(Pickup item)
+    private bool CanAdd(Pickup item)
     {
         if (!item) { return false; }
         return ((currSizeTaken      + item.getSize())   <= sizeCapacity) && 
@@ -48,9 +48,9 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public bool add(Pickup item)
+    public bool Add(Pickup item)
     {
-        if (!item || !canAdd(item)) { return false; }
+        if (!item || !CanAdd(item)) { return false; }
 
         // Add to our list
         itemsInInventory.Add(item);
@@ -62,7 +62,7 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public bool remove(Pickup item)
+    public bool Remove(Pickup item)
     {
         if (!item || !itemsInInventory.Remove(item)) { return false; }
 
@@ -75,6 +75,6 @@ public class Inventory : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        InventoryManager.tryAddToInventory(gameObject, collision.gameObject);
+        InventoryManager.TryAddToInventory(this, collision.gameObject);
     }
 }

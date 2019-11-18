@@ -7,7 +7,7 @@ public class DamageApplicator
     public static void ApplyDamage(Damager damager, Damageable damageable)
     {
         if (!damager || !damageable) { return; }
-        damageable.takeDamage(damager.getDamageDone());
+        damageable.TakeDamage(damager.GetDamageDone());
     }
 
     public static void TryApplyDamage(Damager damager, GameObject shouldBeDamageable)

@@ -72,7 +72,7 @@ public abstract class Gun : MonoBehaviour
         lastTriggerPull = 0;
     }
 
-    public void pullTrigger()
+    public void PullTrigger()
     {
         if (isFiring) { return; }
 
@@ -82,7 +82,7 @@ public abstract class Gun : MonoBehaviour
         lastTriggerPull = Time.time;
         triggerPulled   = true;
 
-        switch(getMode())
+        switch(GetMode())
         {
             case FIRE_MODE.SINGLE:
                 Fire_Single();
@@ -96,7 +96,7 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    public void releaseTrigger()
+    public void ReleaseTrigger()
     {
         triggerPulled = false;
     }
@@ -143,7 +143,7 @@ public abstract class Gun : MonoBehaviour
 
     private bool Fire_Projectile()
     {
-        if (!magazine.hasAmmo())
+        if (!magazine.HasAmmo())
         {
             AudioSource.PlayClipAtPoint(onEmptyFire, Camera.main.transform.position, onEmptyFireVolume);
             return false;
@@ -152,7 +152,7 @@ public abstract class Gun : MonoBehaviour
         // TODO Figure out why -90 worked
         float zAngle = Mathf.Atan2(transform.forward.y, transform.forward.x) * Mathf.Rad2Deg - 90;
 
-        GameObject newGameObject = Instantiate(magazine.getAmmo(), transform.position, Quaternion.AngleAxis(zAngle, Vector3.forward)) as GameObject;
+        GameObject newGameObject = Instantiate(magazine.GetAmmo(), transform.position, Quaternion.AngleAxis(zAngle, Vector3.forward)) as GameObject;
 
         Projectile projectile   = newGameObject.GetComponent<Projectile>();
         Rigidbody2D rigidBody2D = newGameObject.GetComponent<Rigidbody2D>();
@@ -174,19 +174,19 @@ public abstract class Gun : MonoBehaviour
         return true;
     }
 
-    public void reload(uint amount)
+    public void Reload(uint amount)
     {
         // We are firing
         if (isFiring) { return; }
-        magazine.addAmmo(amount);
+        magazine.AddAmmo(amount);
     }
 
-    public void changeMode()
+    public void ChangeMode()
     {
         modes.ChooseNext();
     }
 
-    public FIRE_MODE getMode()
+    public FIRE_MODE GetMode()
     {
         return modes.GetSelected();
     }

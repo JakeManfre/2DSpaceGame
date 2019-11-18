@@ -28,7 +28,7 @@ public class Damageable : MonoBehaviour
         health = maxHealth;
     }
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (damage <= 0) { return; }
         health = Mathf.Clamp(health - damage, 0, health);
@@ -43,7 +43,7 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    public void addHealth(float heal)
+    public void AddHealth(float heal)
     {
         if (heal <= 0) { return; }
 

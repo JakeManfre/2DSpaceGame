@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InventoryManager
 {
-    public static bool addToInventory(Inventory inventory, Pickup item)
+    public static bool AddToInventory(Inventory inventory, Pickup item)
     {
         // Bad data
         if (!inventory || !item) { return false; }
 
         // Can't fit
-        if (!inventory.add(item)) { return false; }
+        if (!inventory.Add(item)) { return false; }
 
         // Do things to objects
         item.soundOnPickUp();
@@ -18,13 +18,13 @@ public class InventoryManager
 
         return true;
     }
-    public static bool removeFromInventory(Inventory inventory, Pickup item)
+    public static bool RemoveFromInventory(Inventory inventory, Pickup item)
     {
         // Bad data
         if (!inventory || !item) { return false; }
 
         // Can't fit
-        if (!inventory.remove(item)) { return false; }
+        if (!inventory.Remove(item)) { return false; }
 
         // Do things to objects
         item.soundOnDrop();
@@ -32,16 +32,15 @@ public class InventoryManager
         return true;
     }
 
-    public static bool tryAddToInventory(GameObject shouldHaveInventory, GameObject shouldBePickable)
+    public static bool TryAddToInventory(Inventory inventory, GameObject shouldBePickable)
     {
-        // Get the Pickup component
         Pickup pickupComponent = shouldBePickable.GetComponent<Pickup>();
-        if (pickupComponent == null) { return false; }
+        return AddToInventory(inventory, pickupComponent);
+    }
 
+    public static bool TryAddToInventory(GameObject shouldHaveInventory, GameObject shouldBePickable)
+    {
         Inventory inventory = shouldHaveInventory.GetComponentInParent<Inventory>();
-        if (inventory == null) { return false; }
-
-        // Add it to the inventory
-        return addToInventory(inventory, pickupComponent);
+        return TryAddToInventory(inventory, shouldBePickable);
     }
 }

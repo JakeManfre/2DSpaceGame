@@ -6,7 +6,7 @@ public class RetrievalGun : Gun
 {
     protected override void Projectile_OnTriggerEnter2D(Projectile projectile, Collider2D collider)
     {
-        InventoryManager.tryAddToInventory(gameObject, collider.gameObject);
+        InventoryManager.TryAddToInventory(gameObject, collider.gameObject);
         Destroy(projectile.gameObject);
     }
 }

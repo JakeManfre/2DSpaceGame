@@ -8,7 +8,7 @@ public class Damager : MonoBehaviour
     [SerializeField]
     float damageDone;
 
-    public float getDamageDone()
+    public float GetDamageDone()
     {
         return damageDone;
     }

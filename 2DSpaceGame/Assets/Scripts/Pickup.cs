@@ -55,7 +55,7 @@ public class Pickup : MonoBehaviour
         // Item can't be picked up by collider
         if (!inventory) { return;  }
 
-        InventoryManager.addToInventory(inventory, this);
+        InventoryManager.AddToInventory(inventory, this);
     }
 
     

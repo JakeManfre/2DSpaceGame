@@ -38,15 +38,15 @@ public class WeaponSystem : MonoBehaviour
         }
         else if (Input.GetButtonDown("Fire"))
         {
-            guns.GetSelected().pullTrigger();
+            guns.GetSelected().PullTrigger();
         }
         else if (Input.GetButtonUp("Fire"))
         {
-            guns.GetSelected().releaseTrigger();
+            guns.GetSelected().ReleaseTrigger();
         }
         else if (Input.GetButtonDown("FireMode"))
         {
-            guns.GetSelected().changeMode();
+            guns.GetSelected().ChangeMode();
         }
     }
 

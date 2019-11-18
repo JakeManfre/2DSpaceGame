@@ -18,13 +18,13 @@ public class Magazine : MonoBehaviour
         numInClip = clipSize;
     }
 
-    public bool hasAmmo()
+    public bool HasAmmo()
     {
         return true;
         //return numInClip > 0;
     }
 
-    public uint addAmmo(uint amount)
+    public uint AddAmmo(uint amount)
     {
         uint actualAdd = (uint)Mathf.Clamp(amount, 0, clipSize);
 
@@ -33,14 +33,14 @@ public class Magazine : MonoBehaviour
         return amount - actualAdd;
     }
 
-    public void empty()
+    public void Empty()
     {
         numInClip = 0;
     }
 
-    public GameObject getAmmo()
+    public GameObject GetAmmo()
     {
-        if (!hasAmmo()) { return null; }
+        if (!HasAmmo()) { return null; }
         numInClip -= 1;
         return ammoType;
     }
