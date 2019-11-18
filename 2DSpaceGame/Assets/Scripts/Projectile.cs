@@ -23,7 +23,13 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (OnTriggerEnter2D_Event == null) { return; }
-        OnTriggerEnter2D_Event(this, collision);
+        if (OnTriggerEnter2D_Event == null) 
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            OnTriggerEnter2D_Event(this, collision);
+        }
     }
 }

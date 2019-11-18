@@ -2954,6 +2954,29 @@ PolygonCollider2D:
       - {x: 0.14999999, y: -0.75}
       - {x: 0.25, y: -0.75}
       - {x: 0.32999998, y: -0.71}
+--- !u!1 &1230680642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6129310908017409052, guid: 43a4f9a76eb192048972a5f99df4b158,
+    type: 3}
+  m_PrefabInstance: {fileID: 1010289898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1230680643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230680642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6a92792edaa8341a1d19c5b8787937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  soundOnDeath: {fileID: 8300000, guid: c60586e1c94cc824abb1ed587bf668d6, type: 3}
+  soundOnDeathVolume: 100
+  soundOnTakeDamage: {fileID: 8300000, guid: 892634c1a72a85844b360966355f0e86, type: 3}
+  soundOnTakeDamageVolume: 50
 --- !u!1 &1264666922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,7 +3189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710345817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.405, y: 0.452, z: 0}
+  m_LocalPosition: {x: -0.005, y: 0.834, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1106182777}

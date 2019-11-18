@@ -6,14 +6,7 @@ public class RetrievalGun : Gun
 {
     protected override void Projectile_OnTriggerEnter2D(Projectile projectile, Collider2D collider)
     {
-        // Get the Pickup component
-        Pickup pickupComponent = collider.GetComponent<Pickup>();
-        if (pickupComponent == null) { return; }
-
-        Inventory inventory = gameObject.GetComponentInParent<Inventory>();
-        if (inventory == null) { return; }
-
-        // Add it to the inventory
-        InventoryManager.addToInventory(inventory, pickupComponent);
+        InventoryManager.tryAddToInventory(gameObject, collider.gameObject);
+        Destroy(projectile.gameObject);
     }
 }

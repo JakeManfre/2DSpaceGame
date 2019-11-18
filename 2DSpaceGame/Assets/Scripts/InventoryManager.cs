@@ -31,4 +31,17 @@ public class InventoryManager : MonoBehaviour
         item.gameObject.SetActive(true);
         return true;
     }
+
+    public static bool tryAddToInventory(GameObject shouldHaveInventory, GameObject shouldBePickable)
+    {
+        // Get the Pickup component
+        Pickup pickupComponent = shouldBePickable.GetComponent<Pickup>();
+        if (pickupComponent == null) { return false; }
+
+        Inventory inventory = shouldHaveInventory.GetComponentInParent<Inventory>();
+        if (inventory == null) { return false; }
+
+        // Add it to the inventory
+        return addToInventory(inventory, pickupComponent);
+    }
 }

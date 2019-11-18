@@ -72,4 +72,9 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        InventoryManager.tryAddToInventory(gameObject, collision.gameObject);
+    }
 }
