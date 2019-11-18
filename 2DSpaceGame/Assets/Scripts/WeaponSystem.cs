@@ -15,15 +15,18 @@ public class WeaponSystem : MonoBehaviour
 
     Cycleable<Gun> guns;
 
+    [SerializeField]
+    Transform firePoint;
+
     private void Start()
     {
-        foreach (Gun gun in gunList)
-        {
-            gun.Initialize(gameObject);
-        }
-
         guns = new Cycleable<Gun>();
-        guns.SetList(gunList);
+
+        foreach (Gun gunPrefab in gunList)
+        {
+            Gun gun = Instantiate(gunPrefab, firePoint);
+            guns.AddItem(gun);
+        }
     }
 
     // Update is called once per frame

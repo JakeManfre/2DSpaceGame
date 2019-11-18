@@ -10,7 +10,7 @@ public class RetrievalGun : Gun
         Pickup pickupComponent = collider.GetComponent<Pickup>();
         if (pickupComponent == null) { return; }
 
-        Inventory inventory = myOwner.GetComponent<Inventory>();
+        Inventory inventory = gameObject.GetComponentInParent<Inventory>();
         if (inventory == null) { return; }
 
         // Add it to the inventory

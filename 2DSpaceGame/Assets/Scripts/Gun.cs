@@ -35,19 +35,19 @@ public abstract class Gun : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField]
-    float burstFireRate;
+    float burstFireRate = .02f;
 
     [SerializeField]
-    float autoFireRate;
+    float autoFireRate = .3f;
 
     [SerializeField]
-    uint shotsPerBurst;
+    uint shotsPerBurst = 4;
 
     [SerializeField]
-    float shotCooldown;
+    float shotCooldown = .1f;
 
     [SerializeField]
-    float launchSpeed;
+    float launchSpeed = 15;
 
     [Header("Fire Mode")]
     [SerializeField]
@@ -60,11 +60,9 @@ public abstract class Gun : MonoBehaviour
     bool triggerPulled;
     float lastTriggerPull;
 
-    protected GameObject myOwner;
-
     protected abstract void Projectile_OnTriggerEnter2D(Projectile projectile, Collider2D collider);
 
-    public void Initialize(GameObject owner)
+    public void Start()
     {
         modes = new Cycleable<FIRE_MODE>();
         modes.SetList(availableModes);
@@ -72,8 +70,6 @@ public abstract class Gun : MonoBehaviour
         isFiring = false;
         triggerPulled = false;
         lastTriggerPull = 0;
-
-        myOwner = owner; 
     }
 
     public void pullTrigger()
@@ -153,7 +149,10 @@ public abstract class Gun : MonoBehaviour
             return false;
         }
 
-        GameObject newGameObject = Instantiate(magazine.getAmmo(), transform.position, Quaternion.identity) as GameObject;
+        // TODO Figure out why -90 worked
+        float zAngle = Mathf.Atan2(transform.forward.y, transform.forward.x) * Mathf.Rad2Deg - 90;
+
+        GameObject newGameObject = Instantiate(magazine.getAmmo(), transform.position, Quaternion.AngleAxis(zAngle, Vector3.forward)) as GameObject;
 
         Projectile projectile   = newGameObject.GetComponent<Projectile>();
         Rigidbody2D rigidBody2D = newGameObject.GetComponent<Rigidbody2D>();
@@ -168,7 +167,7 @@ public abstract class Gun : MonoBehaviour
         projectile.OnTriggerEnter2D_Event += this.Projectile_OnTriggerEnter2D;
 
         // Set the velocity
-        rigidBody2D.velocity = new Vector2(0, launchSpeed);
+         rigidBody2D.velocity = transform.forward * launchSpeed;
 
         AudioSource.PlayClipAtPoint(onFire, Camera.main.transform.position, onFireVolume);
 

@@ -660,7 +660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534462008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422382175}
@@ -745,7 +745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 324561202}
@@ -2190,7 +2190,7 @@ PrefabInstance:
     - target: {fileID: 6129310908017409048, guid: 43a4f9a76eb192048972a5f99df4b158,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6129310908017409048, guid: 43a4f9a76eb192048972a5f99df4b158,
         type: 3}
@@ -2342,7 +2342,7 @@ GameObject:
   - component: {fileID: 1106182779}
   - component: {fileID: 1106182780}
   - component: {fileID: 1106182782}
-  - component: {fileID: 1106182783}
+  - component: {fileID: 1106182781}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -2407,10 +2407,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106182775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1209334767}
+  - {fileID: 1710345818}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2550,6 +2551,23 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1106182781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106182775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48343b349a1b72342bf610a49f30a1cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  gunList:
+  - {fileID: 4631501169322998396, guid: 1fa38a5594f48b244bb23ad0c9d6f87d, type: 3}
+  - {fileID: 7812650812308470743, guid: e40c51a2febb82d4aab928bf11477586, type: 3}
+  firePoint: {fileID: 1710345818}
 --- !u!114 &1106182782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2569,22 +2587,6 @@ MonoBehaviour:
   onInsertVolume: 0
   onRemoveSound: {fileID: 0}
   onRemoveVolume: 0
---- !u!114 &1106182783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106182775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48343b349a1b72342bf610a49f30a1cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: WeaponSystem
-  gunList:
-  - {fileID: 4631501169322998396, guid: 1fa38a5594f48b244bb23ad0c9d6f87d, type: 3}
-  - {fileID: 7812650812308470743, guid: e40c51a2febb82d4aab928bf11477586, type: 3}
 --- !u!1 &1129727644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3140,6 +3142,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706274749}
   m_CullTransparentMesh: 0
+--- !u!1 &1710345817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710345818}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1710345818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710345817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.405, y: 0.452, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1106182777}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1827692297
 GameObject:
   m_ObjectHideFlags: 0
