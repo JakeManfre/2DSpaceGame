@@ -38,16 +38,16 @@ public abstract class Gun : MonoBehaviour
     float burstFireRate = .02f;
 
     [SerializeField]
-    float autoFireRate = .3f;
+    float autoFireRate  = .3f;
 
     [SerializeField]
-    uint shotsPerBurst = 4;
+    uint shotsPerBurst  = 4;
 
     [SerializeField]
-    float shotCooldown = .1f;
+    float shotCooldown  = .1f;
 
     [SerializeField]
-    float launchSpeed = 15;
+    float launchSpeed   = 15;
 
     [Header("Fire Mode")]
     [SerializeField]
@@ -60,6 +60,10 @@ public abstract class Gun : MonoBehaviour
     bool triggerPulled;
     float lastTriggerPull;
 
+
+    // Helpers
+    WeaponSystem parentSystem;
+
     protected abstract void Projectile_OnTriggerEnter2D(Projectile projectile, Collider2D collider);
 
     public void Start()
@@ -67,9 +71,14 @@ public abstract class Gun : MonoBehaviour
         modes = new Cycleable<FIRE_MODE>();
         modes.SetList(availableModes);
 
-        isFiring = false;
-        triggerPulled = false;
+        isFiring        = false;
+        triggerPulled   = false;
         lastTriggerPull = 0;
+    }
+
+    public void Initialize(WeaponSystem parent)
+    {
+        parentSystem = parent;
     }
 
     public void PullTrigger()
@@ -167,7 +176,9 @@ public abstract class Gun : MonoBehaviour
         projectile.OnTriggerEnter2D_Event += this.Projectile_OnTriggerEnter2D;
 
         // Set the velocity
-         rigidBody2D.velocity = transform.forward * launchSpeed;
+        Vector2 parentVelocity = parentSystem.GetRigidBodyVelocity();
+
+        rigidBody2D.velocity = (transform.forward * launchSpeed) + new Vector3(parentVelocity.x, parentVelocity.y);
 
         AudioSource.PlayClipAtPoint(onFire, Camera.main.transform.position, onFireVolume);
 

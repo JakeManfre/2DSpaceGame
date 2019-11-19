@@ -25,6 +25,7 @@ public class WeaponSystem : MonoBehaviour
         foreach (Gun gunPrefab in gunList)
         {
             Gun gun = Instantiate(gunPrefab, firePoint);
+            gun.Initialize(this);
             guns.AddItem(gun);
         }
     }
@@ -58,5 +59,13 @@ public class WeaponSystem : MonoBehaviour
     public List<Gun> GetGuns()
     {
         return gunList;
+    }
+
+    public Vector2 GetRigidBodyVelocity()
+    {
+        Rigidbody2D parentRigidBody2D = gameObject.GetComponent<Rigidbody2D>();
+        if (!parentRigidBody2D) { return Vector3.zero; }
+
+        return parentRigidBody2D.velocity;
     }
 }
